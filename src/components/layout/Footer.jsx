@@ -1,8 +1,10 @@
+import Planet from '../../assets/planet.svg'
+
 function Footer() {
     const footerYear = new Date().getFullYear()
   
     return (
-      <footer className='footer p-10 bg-gray-700 text-primary-content footer-center'>
+      <footer className='footer p-10 bg-gray-600 text-primary-content footer-center'>
         <div>
           <svg
             width='50'
