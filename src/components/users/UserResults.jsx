@@ -1,10 +1,22 @@
-import { useContext } from 'react'
-import Spinner from '../layout/Spinner'
-import UserItem from '../users/UserItem'
-import GithubContext from '../../context/github/GithubContext'
+import React, { useEffect, useState } from 'react';
+import Spinner from '../layout/Spinner';
+import UserItem from './UserItem';
 
 function UserResults() {
-  const { users, loading } = useContext(GithubContext)
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    const response = await fetch('https://api.github.com/users');
+
+    const data = await response.json();
+    setUsers(data);
+    setLoading(false);
+  };
 
   if (!loading) {
     return (
@@ -13,10 +25,10 @@ function UserResults() {
           <UserItem key={user.id} user={user} />
         ))}
       </div>
-    )
+    );
   } else {
-    return <Spinner />
+    return <Spinner />;
   }
 }
 
-export default UserResults
+export default UserResults;
