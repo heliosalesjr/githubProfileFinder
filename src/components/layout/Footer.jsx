@@ -1,4 +1,4 @@
-import Planet from '../../assets/planet.svg'
+
 
 function Footer() {
     const footerYear = new Date().getFullYear()
